@@ -119,17 +119,21 @@ idAlerta int primary key auto_increment,
 dataHora varchar(45),
 statusAlerta varchar(45),
 fkComponente int,
-FOREIGN KEY (fkComponente) REFERENCES Componente (idComponente)
+FOREIGN KEY (fkComponente) REFERENCES Componente (idComponente),
+fkMaquina int,
+FOREIGN KEY (fkMaquina) REFERENCES maquina (idMaquina)
 );
 
 insert into Componente values(null,"Disco");
 insert into Componente values(null,"Processador");
 insert into Componente values(null,"Memoria");
+
+
 CREATE TABLE PorcentagemUso(
 idPorcentagemUso int primary key auto_increment,
-porcentagemHD decimal(4,2),
-porcentagemMem decimal(4,2),
-porcentagemProc decimal(4,2),
+porcentagemHD decimal(5,2),
+porcentagemMem decimal(5,2),
+porcentagemProc decimal(5,2),
 dataHora varchar(45),
 fkMaquina INT,
 FOREIGN KEY (fkMaquina) REFERENCES Maquina(idMaquina),
@@ -137,16 +141,9 @@ fkEmpresa CHAR(6),
 FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
-desc alertaDashboard;
 
-/*
-DELIMITER //
-CREATE PROCEDURE deletarMaquina(IN p_idMaquina INT)
-BEGIN
-    DELETE FROM infomaquina WHERE fkMaquina = p_idMaquina;
-    DELETE FROM maquina WHERE idMaquina = p_idMaquina;
-END //
-DELIMITER //
+
+
 
 select*From Empresa;
 select*From Maquina;
@@ -161,5 +158,8 @@ select*From alertaDashboard;
 select*From Metrica;
 select*From RegistroAtividade;
 select*From MetricaMouse;
-show tables;
-*/
+
+select*From alertaDashboard join maquina on fkmaquina=idmaquina;
+
+
+select*From alertaDashboard join componente on idcomponente = fkcomponente;
