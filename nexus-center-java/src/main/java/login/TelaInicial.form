@@ -48,17 +48,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabelPatrimonio1" min="-2" pref="194" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblSistemaOperacional" alignment="1" min="-2" pref="397" max="-2" attributes="0"/>
-                          <Component id="lblProcessador" alignment="1" min="-2" pref="397" max="-2" attributes="0"/>
-                          <Component id="lblMemoriaRam" alignment="1" min="-2" pref="397" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="lblSistemaOperacional" alignment="0" pref="397" max="32767" attributes="0"/>
+                      <Component id="lblProcessador" alignment="0" pref="397" max="32767" attributes="0"/>
+                      <Component id="lblMemoriaRam" alignment="0" pref="397" max="32767" attributes="0"/>
                       <Component id="jLabelPatrimonio2" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                       <Component id="jLabelPatrimonio3" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
                       <Component id="jLabelPatrimonio" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                      <Component id="lblCapacidade" alignment="0" min="-2" pref="397" max="-2" attributes="0"/>
+                      <Component id="lblCapacidade" alignment="0" pref="397" max="32767" attributes="0"/>
                       <Component id="jLoginTitulo1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="42" max="32767" attributes="0"/>
@@ -70,9 +68,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jFundoAzul" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Component id="jLoginTitulo1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="jLabelPatrimonio1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblSistemaOperacional" min="-2" max="-2" attributes="0"/>
@@ -88,7 +86,7 @@
                   <Component id="jLabelPatrimonio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblCapacidade" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="67" max="32767" attributes="0"/>
+                  <EmptySpace pref="97" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

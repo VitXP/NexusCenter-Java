@@ -6,19 +6,27 @@ package login;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
-import com.github.britooo.looca.api.group.memoria.Memoria;
+import com.github.britooo.looca.api.group.dispositivos.DispositivoUsb;
+import com.github.britooo.looca.api.group.dispositivos.DispositivosUsbGrupo;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
+import comunicacao.slack.SlackeandoMetodos;
 import conexao.JDBC.Componente;
 import conexao.JDBC.Conexao;
 import conexao.JDBC.ConfiguracaoComponente;
+import conexao.JDBC.Empresa;
+import conexao.JDBC.EnviaDados;
 import conexao.JDBC.InfoMaquina;
 import conexao.JDBC.Maquina;
-import conexao.JDBC.Metrica;
-import conexao.JDBC.MetricaMouse;
 import conexao.JDBC.RegistroAtividade;
 import conexao.JDBC.Usb;
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -29,7 +37,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Mensagem
     Mensagem mensagem = new Mensagem();
-    
+
+    //Enviar Dados
+    EnviarDados enviar = new EnviarDados();
     // Objetos  Looca
     Looca looca = new Looca();
     Sistema sistema = looca.getSistema();
@@ -44,6 +54,15 @@ public class TelaInicial extends javax.swing.JFrame {
         this.carregarDados();
         mensagem.mensagem();
 
+        int delay = 10000; // Tempo em milissegundos (10 segundos)
+
+        Timer timer = new Timer(delay, e -> {
+            enviar.enviar();
+        });
+
+        timer.setRepeats(false); // Define que o timer não deve repetir
+
+        timer.start(); // Inicia o timer
     }
 
     private void carregarDados() {
@@ -174,16 +193,15 @@ public class TelaInicial extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelPatrimonio1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblSistemaOperacional, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblProcessador, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblMemoriaRam, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSistemaOperacional, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                    .addComponent(lblProcessador, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                    .addComponent(lblMemoriaRam, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                     .addComponent(jLabelPatrimonio2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPatrimonio3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPatrimonio, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCapacidade, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCapacidade, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                     .addComponent(jLoginTitulo1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addComponent(jFundoAzul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -192,9 +210,9 @@ public class TelaInicial extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jFundoAzul, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
+                .addGap(48, 48, 48)
                 .addComponent(jLoginTitulo1)
-                .addGap(52, 52, 52)
+                .addGap(47, 47, 47)
                 .addComponent(jLabelPatrimonio1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblSistemaOperacional)
@@ -210,7 +228,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addComponent(jLabelPatrimonio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCapacidade)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -3,3 +3,34 @@
 03/06/2023 23:10:44 O Usuário fez login!
 03/06/2023 23:11:26 O Usuário fez login!
 03/06/2023 23:13:03 O Usuário fez login!
+03/06/2023 23:43:47 O Usuário fez login!
+03/06/2023 23:45:23 O Usuário fez login!
+03/06/2023 23:46:41 O Usuário fez login!
+03/06/2023 23:47:20 O Usuário fez login!
+03/06/2023 23:49:13 Autenticação Inválida!
+03/06/2023 23:50:03 Autenticação Inválida!
+03/06/2023 23:50:07 Autenticação Inválida!
+03/06/2023 23:51:14 Autenticação Inválida!
+03/06/2023 23:51:50 Autenticação Inválida!
+03/06/2023 23:53:28 Autenticação Inválida!
+03/06/2023 23:53:57 Autenticação Inválida!
+04/06/2023 00:00:59 O Usuário fez login!
+04/06/2023 00:02:37 O Usuário fez login!
+04/06/2023 00:03:37 O Usuário fez login!
+04/06/2023 00:05:12 O Usuário fez login!
+04/06/2023 00:06:41 O Usuário fez login!
+04/06/2023 00:07:38 O Usuário fez login!
+04/06/2023 00:22:02 O Usuário fez login!
+04/06/2023 00:22:33 O Usuário fez login!
+04/06/2023 00:22:51 O Usuário fez login!
+04/06/2023 00:24:39 O Usuário fez login!
+04/06/2023 00:24:57 O Usuário fez login!
+04/06/2023 00:26:47 O Usuário fez login!
+04/06/2023 00:27:45 O Usuário fez login!
+04/06/2023 00:28:30 O Usuário fez login!
+04/06/2023 00:29:10 O Usuário fez login!
+04/06/2023 00:30:38 O Usuário fez login!
+04/06/2023 00:44:59 O Usuário fez login!
+04/06/2023 00:51:37 O Usuário fez login!
+04/06/2023 00:53:02 O Usuário fez login!
+04/06/2023 01:00:08 O Usuário fez login!
