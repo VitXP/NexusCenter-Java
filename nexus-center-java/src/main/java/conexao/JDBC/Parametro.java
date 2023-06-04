@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 /**
  *
@@ -30,7 +28,7 @@ public class Parametro {
         this.atencao = atencao;
         this.alerta = alerta;
     }
-    
+
     public Parametro() {
     }
 
@@ -45,11 +43,13 @@ public class Parametro {
 
         return conectnuv;
     }
+
     public List<Parametro> listarTodos() {
         List<Parametro> todosParam = this.conectloc().query("select * from ParametroAlerta;",
                 new ParametroRowMapper());
         return todosParam;
     }
+
     public Map<String, Object> recuperarpornumero(Integer fkMaquina) {
         try {
             Map<String, Object> registro = this.conectnuv().queryForMap(
@@ -59,13 +59,15 @@ public class Parametro {
             return null;
         }
     }
-    public Integer tamanhoTotalParam(){
-        Integer tamanho=this.listarTodos().size();
+
+    public Integer tamanhoTotalParam() {
+        Integer tamanho = this.listarTodos().size();
         return tamanho;
     }
-    public Parametro parametroDaUltimafk(Integer fkComponente){
-        Parametro ultimo= this.conectnuv().queryForObject("select * from ParametroAlerta where fkComponente=?", 
-                new ParametroRowMapper(),fkComponente);
+
+    public Parametro parametroDaUltimafk(Integer fkComponente) {
+        Parametro ultimo = this.conectnuv().queryForObject("select * from ParametroAlerta where fkComponente=?",
+                new ParametroRowMapper(), fkComponente);
         return ultimo;
     }
 //    Pais registro = jdbcTemplate.queryForObject("select * from tbl_pais where id_pais = ?", new
@@ -110,7 +112,5 @@ public class Parametro {
     public void setAlerta(Integer alerta) {
         this.alerta = alerta;
     }
-
-
 
 }

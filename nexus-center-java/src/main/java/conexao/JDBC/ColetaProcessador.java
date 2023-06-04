@@ -4,22 +4,13 @@
  */
 package conexao.JDBC;
 
-import com.github.britooo.looca.api.core.Looca;
-import com.github.britooo.looca.api.group.discos.Disco;
-import com.github.britooo.looca.api.group.discos.DiscoGrupo;
-import com.github.britooo.looca.api.group.memoria.Memoria;
+
 import com.github.britooo.looca.api.group.processador.Processador;
-import com.github.britooo.looca.api.group.processos.ProcessoGrupo;
-import com.github.britooo.looca.api.group.processos.Processo;
-import com.github.britooo.looca.api.group.sistema.Sistema;
-import com.github.britooo.looca.api.group.dispositivos.DispositivosUsbGrupo;
-import com.github.britooo.looca.api.group.dispositivos.DispositivoUsb;
 import com.slack.api.methods.SlackApiException;
 import comunicacao.slack.SlackeandoMetodos;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**

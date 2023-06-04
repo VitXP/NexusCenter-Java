@@ -63,7 +63,8 @@ public class MetricaMouse {
         JdbcTemplate conection = new Conexao().getConnection();
         return conection;
     }
-        public JdbcTemplate conectMouseazu() {
+
+    public JdbcTemplate conectMouseazu() {
         JdbcTemplate conection2 = new Conexao().getConnectionAzu();
         return conection2;
     }
@@ -82,7 +83,7 @@ public class MetricaMouse {
         currenty = posicaoAtual.y;
         if (currentx.equals(lastx) && currenty.equals(lasty)) {
             movimento = "Inativo";
-            
+
         } else {
             movimento = "Ativo";
         }
@@ -95,7 +96,6 @@ public class MetricaMouse {
                 fkMaquina,
                 fkEmpresa.toString());
         this.conectMouseazu().update("insert into MetricaMouse(cordenadaX,cordenadaY,dataHora,statusMouse,fkMaquina,fkEmpresa) values(?,?,?,?,?,?)",
-
                 coordenadas.cordenadaX,
                 coordenadas.cordenaday,
                 coordenadas.dataHora,

@@ -9,6 +9,7 @@ package conexao.JDBC;
  * @author vitor
  */
 public class Empresa {
+
     private String idEmpresa;
     private String razaoSocial;
     private String CNPJ;
@@ -23,6 +24,7 @@ public class Empresa {
         this.tel = tel;
     }
 // Classe criada especificamente para o Bean Property, pois sem ela é impossível inicializar a lista de acumulação de Objetos para consulta na classe LoginJframe
+
     public Empresa() {
     }
 
@@ -70,6 +72,5 @@ public class Empresa {
     public String toString() {
         return "Empresa{" + "idEmpresa=" + idEmpresa + ", razaoSocial=" + razaoSocial + ", CNPJ=" + CNPJ + ", email=" + email + ", tel=" + tel + '}';
     }
-    
-    
+
 }

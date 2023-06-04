@@ -1,6 +1,5 @@
 conexao\JDBC\ColetaProcessador.class
 login\UsuarioDAO.class
-conexao\JDBC\ColetaHdIndividual.class
 conexao\JDBC\Parametro.class
 login\LoginJframe$1.class
 mouse\colector\MouseColector.class

@@ -142,9 +142,6 @@ FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
 
-
-
-
 select*From Empresa;
 select*From Maquina;
 select*From Usb;
@@ -159,7 +156,4 @@ select*From Metrica;
 select*From RegistroAtividade;
 select*From MetricaMouse;
 
-select*From alertaDashboard join maquina on fkmaquina=idmaquina;
 
-
-select*From alertaDashboard join componente on idcomponente = fkcomponente;

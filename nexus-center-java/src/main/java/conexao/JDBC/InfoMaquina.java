@@ -8,7 +8,6 @@ package conexao.JDBC;
  *
  * @author vitor
  */
-
 // Tabela InfoMaquina
 public class InfoMaquina {
 
@@ -23,8 +22,6 @@ public class InfoMaquina {
 
     public InfoMaquina() {
     }
-
-   
 
     public String getSistemaOperacional() {
         return sistemaOperacional;

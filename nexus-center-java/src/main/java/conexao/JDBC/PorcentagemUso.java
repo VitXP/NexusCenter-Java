@@ -4,7 +4,6 @@
  */
 package conexao.JDBC;
 
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,14 +14,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class PorcentagemUso {
     // Objetos essenciais à classe
-    
+
     private ColetaHDInfo coletahd;
     private ColetaMemoria coletamem;
     private ColetaProcessador coletaproc;
     private DateTimeFormatter formatter;
-    
+
     // Objetos da Classe em si
-    
     private Integer idPorcentagemUso;
     private Double porcentagemHD;
     private Double porcentagemMem;
@@ -38,20 +36,20 @@ public class PorcentagemUso {
         coletahd = new ColetaHDInfo();
         coletamem = new ColetaMemoria();
         coletaproc = new ColetaProcessador();
-        
+
         // Objetos tratados para envio ao banco      
-        this.idPorcentagemUso=null;
-        this.porcentagemHD=(coletahd.getValorUtilizado()
-                /coletahd.getCapacidade())*100.0;
-        this.porcentagemMem=(coletamem.getValorUtilizado()
-                /coletamem.getCapacidade())*100.0;
-        this.porcentagemProc=(coletaproc.getValorUtilizado()
-                /coletaproc.getCapacidade())*100.0;
+        this.idPorcentagemUso = null;
+        this.porcentagemHD = (coletahd.getValorUtilizado()
+                / coletahd.getCapacidade()) * 100.0;
+        this.porcentagemMem = (coletamem.getValorUtilizado()
+                / coletamem.getCapacidade()) * 100.0;
+        this.porcentagemProc = (coletaproc.getValorUtilizado()
+                / coletaproc.getCapacidade()) * 100.0;
         this.dataHora = LocalDateTime.now().format(formatter);
         this.fkMaquina = null;
         this.fkEmpresa = null;
     }
-    
+
     public JdbcTemplate conectloc() {
         JdbcTemplate conection = new Conexao().getConnection();
         return conection;
@@ -61,19 +59,18 @@ public class PorcentagemUso {
         JdbcTemplate conection = new Conexao().getConnectionAzu();
         return conection;
     }
+
     public void enviaDadosPorcentagem(Integer fkMaquina, Integer fkEmpresa) {
         PorcentagemUso coleta = new PorcentagemUso();
 
         this.conectloc().update("insert into PorcentagemUso values(null,?,?,?,?,?,?)",
-                
-                
                 coleta.porcentagemHD,
                 coleta.porcentagemMem,
                 coleta.porcentagemProc,
                 coleta.dataHora,
                 fkMaquina,
                 fkEmpresa
-                );
+        );
         this.conectnuv().update("insert into PorcentagemUso("
                 + "porcentagemHD"
                 + ",porcentagemMem"
@@ -81,16 +78,14 @@ public class PorcentagemUso {
                 + ",dataHora"
                 + ",fkMaquina"
                 + ",fkEmpresa) "
-                
                 + "values(?,?,?,?,?,?)",
-                
                 coleta.porcentagemHD,
                 coleta.porcentagemMem,
                 coleta.porcentagemProc,
                 coleta.dataHora,
                 fkMaquina,
                 fkEmpresa.toString()
-                );
+        );
     }
 
     public Double getPorcentagemHD() {
@@ -116,7 +111,5 @@ public class PorcentagemUso {
     public void setPorcentagemProc(Double porcentagemProc) {
         this.porcentagemProc = porcentagemProc;
     }
-    
-    
-    
+
 }

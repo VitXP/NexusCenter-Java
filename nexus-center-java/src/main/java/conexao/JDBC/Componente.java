@@ -9,15 +9,13 @@ package conexao.JDBC;
  * @author vitor
  */
 public class Componente {
+
     private Integer idComponente;
     private String tipoCompenente;
 
     public Componente() {
     }
 
-    
-    
-    
     public Integer getIdComponente() {
         return idComponente;
     }
@@ -39,8 +37,4 @@ public class Componente {
         return "Componente{" + "idComponente=" + idComponente + ", tipoCompenente=" + tipoCompenente + '}';
     }
 
- 
-
-  
-    
 }

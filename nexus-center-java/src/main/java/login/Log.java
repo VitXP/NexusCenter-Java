@@ -26,7 +26,7 @@ import java.util.logging.Logger;
  */
 public class Log {
 
-    public void login(ResultSet usuario,Boolean rdusuario) {
+    public void login(ResultSet usuario, Boolean rdusuario) {
 
         File login = new File("log.txt");
 
@@ -63,6 +63,5 @@ public class Log {
             Logger.getLogger(LoginJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
 }

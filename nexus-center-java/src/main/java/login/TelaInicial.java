@@ -36,7 +36,6 @@ public class TelaInicial extends javax.swing.JFrame {
         this.login = login;
         String patrimonio = login.getPatrimonioDigitado(); // Obtendo a variávelA da instância de JanelaA passada
         String senha = login.getSenhaDigitada(); // Obtendo a variávelA da instância de JanelaA passada
-       
 
         //Icone
         this.setIconImage(

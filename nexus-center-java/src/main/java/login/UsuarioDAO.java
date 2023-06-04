@@ -43,14 +43,13 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, "UsuarioDAO:" + erro);
             return null;
         }
-       }
-    
+    }
 
     // Retorna Código Slack
     public String coletarCodigoSlack() {
         con = new Conexao().conectaBDAzure();
         NotifSlack slack = new NotifSlack();
-        
+
         String sql = "select*from Slack";
         try {
             PreparedStatement pstm = con.prepareStatement(sql);
@@ -69,4 +68,4 @@ public class UsuarioDAO {
             return null;
         }
     }
-   }
+}

@@ -11,8 +11,6 @@ import javax.swing.JOptionPane;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-
-
 public class Conexao {
 
     private JdbcTemplate connectionmysql;
@@ -27,7 +25,7 @@ public class Conexao {
         dataSourcemysql.setUsername("root");
         dataSourcemysql.setPassword("56674894");
         this.connectionmysql = new JdbcTemplate(dataSourcemysql);
-        
+
         BasicDataSource dataSourceMSSQL = new BasicDataSource();
 //      classe de driver fornecida no site da Microsoft        
         dataSourceMSSQL.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -38,19 +36,18 @@ public class Conexao {
 //      senha de usuário do BD        
         dataSourceMSSQL.setPassword("#Gfgrupo6");
         this.connectionazure = new JdbcTemplate(dataSourceMSSQL);
-        
+
     }
 
     public JdbcTemplate getConnection() {
         return connectionmysql;
     }
-    
-    public JdbcTemplate getConnectionAzu(){
+
+    public JdbcTemplate getConnectionAzu() {
         return connectionazure;
     }
 
-   // Processo de autenticação baseado em videoaula 
-    
+    // Processo de autenticação baseado em videoaula 
     public Connection conectaBDAzure() {
         Connection con = null;
 

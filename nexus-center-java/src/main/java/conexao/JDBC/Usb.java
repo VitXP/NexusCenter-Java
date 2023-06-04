@@ -16,7 +16,7 @@ public class Usb {
     private String fornecedor;
     private Integer fkMaquina;
     private Integer fkEmpresa;
-    
+
     public Integer getIdUsb() {
         return idUsb;
     }
@@ -56,8 +56,6 @@ public class Usb {
     public void setFornecedor(String fornecedor) {
         this.fornecedor = fornecedor;
     }
-
-    
 
     @Override
     public String toString() {

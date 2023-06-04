@@ -61,5 +61,4 @@ public class ConfiguracaoComponente {
         return "ConfiguracaoComponente{" + "fkMaquina=" + fkMaquina + ", fkEmpresa=" + fkEmpresa + ", fkComponente=" + fkComponente + ", capacidade=" + capacidade + ", unidadeMedida=" + unidadeMedida + '}';
     }
 
- 
 }
