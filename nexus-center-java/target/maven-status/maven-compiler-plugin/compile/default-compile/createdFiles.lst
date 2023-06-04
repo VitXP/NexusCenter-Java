@@ -12,7 +12,6 @@ conexao\JDBC\MetricaMouseRowMapper.class
 conexao\JDBC\Usb.class
 login\LoginJframe.class
 conexao\JDBC\RegistroAtividade.class
-looca\Coletor.class
 mouse\colector\MouseMain.class
 conexao\JDBC\ColetaHDInfo.class
 mouse\colector\Mouse.class
