@@ -45,7 +45,7 @@ public class TelaInicial extends javax.swing.JFrame {
         DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
         Processador processador = looca.getProcessador();
         Sistema sistema = looca.getSistema();
-
+        
         // Tamanho Total Disco
         Long tamanhoTotalDisco = grupoDeDiscos.getTamanhoTotal();
         double tamanhoTotalGB = tamanhoTotalDisco != null ? tamanhoTotalDisco / (1024 * 1024 * 1024.0) : 0.0;
@@ -62,14 +62,7 @@ public class TelaInicial extends javax.swing.JFrame {
         lblProcessador.setText(String.format("%s ", processador.getNome()));
         lblSistemaOperacional.setText(String.format("%s", sistema.getSistemaOperacional()));
 
-        // Objetos Entidades
-        InfoMaquina infoMaquina = new InfoMaquina();
-        RegistroAtividade registroAtividade = new RegistroAtividade();
-        Usb usb = new Usb();
-        Componente componente = new Componente();
-        ConfiguracaoComponente configComponente = new ConfiguracaoComponente();
-        Metrica metrica = new Metrica();
-        MetricaMouse metricaMouse = new MetricaMouse();
+       
 
     }
 
