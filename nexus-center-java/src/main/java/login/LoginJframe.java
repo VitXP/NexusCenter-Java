@@ -4,17 +4,13 @@
  */
 package login;
 
-import comunicacao.slack.SlackeandoMetodos;
 import java.sql.ResultSet;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import conexao.JDBC.Conexao;
 import conexao.JDBC.Maquina;
-import org.springframework.jdbc.core.JdbcTemplate;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Timer;
 
 /**
  *
@@ -176,16 +172,12 @@ public class LoginJframe extends javax.swing.JFrame {
             Logger.getLogger(LoginJframe.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            // Objetos JDBC
-            Conexao conexao = new Conexao();
-            JdbcTemplate conMysql = conexao.getConnection();
-            JdbcTemplate conAzure = conexao.getConnectionAzu();
 
+            // Objetos JDBC
             String patrimonio_maquina = txtPatrimonio.getText();
             String senha_maquina = txtSenha.getText();
 
             Maquina maquina = new Maquina(patrimonio_maquina, senha_maquina);// Adicionado Construtor na classe máquina
-            SlackeandoMetodos aviso = new SlackeandoMetodos();
 
             UsuarioDAO objUsuarioDAO = new UsuarioDAO();// Executa-se a consulta ao banco referente ao método para instanciar objeto Maquina que servirá ara autenticação;
             ResultSet rsusariodao = objUsuarioDAO.autenticsacaoUsuario(maquina);// Nesta linha é instanciado objeto com parâmetros provenientes da consulta com a Azure
@@ -193,22 +185,11 @@ public class LoginJframe extends javax.swing.JFrame {
             if (rsusariodao.next()) {
                 //lOGADO
 
-                ImageIcon icon = new ImageIcon(getClass().getResource("/assets/verificado.png"));
-                String mensagem = "Login realizado!";
-                String titulo = "Seja Bem-Vindo!";
-                int messageType = JOptionPane.INFORMATION_MESSAGE;
-                int delay = 4000; // Tempo em milissegundos (5 segundos)
+                //Mensagem
+                Mensagem mensagem = new Mensagem();
+                mensagem.mensagemLogin();
 
-                Timer timer = new Timer(delay, e -> {
-                    JOptionPane.getRootFrame().dispose(); // Fecha o JOptionPane após o tempo definido
-                });
-
-                timer.setRepeats(false); // Define que o timer não deve repetir
-
-                timer.start(); // Inicia o timer
-
-                JOptionPane.showMessageDialog(null, mensagem, titulo, messageType, icon);
-
+                //Mudar Tela
                 TelaInicial telaNext = new TelaInicial();
                 this.dispose();
                 telaNext.setVisible(rootPaneCheckingEnabled);

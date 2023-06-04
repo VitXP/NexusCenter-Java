@@ -13,7 +13,7 @@ import login.UsuarioDAO;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class SlackeandoMetodos {
 

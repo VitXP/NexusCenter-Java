@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class MaquinaRowMapper implements RowMapper<Maquina> {
     

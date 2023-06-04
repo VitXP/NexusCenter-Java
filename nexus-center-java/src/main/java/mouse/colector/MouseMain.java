@@ -6,7 +6,7 @@ package mouse.colector;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class MouseMain {
     public static void main(String[] args) {

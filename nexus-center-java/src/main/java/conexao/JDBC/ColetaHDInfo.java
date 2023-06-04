@@ -26,7 +26,7 @@ import oshi.software.os.OSFileStore;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class ColetaHDInfo {
     private SlackeandoMetodos mensagem;

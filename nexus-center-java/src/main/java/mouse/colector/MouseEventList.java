@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class MouseEventList {
     

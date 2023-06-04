@@ -10,7 +10,6 @@ import java.time.Instant;
  *
  * @author vitor
  */
-
 // Tabela RegistroAtividade
 public class RegistroAtividade {
 
@@ -63,15 +62,10 @@ public class RegistroAtividade {
         this.tempoDeAtividade = tempoDeAtividade;
     }
 
-   
-
     @Override
     public String toString() {
-        return String.format(" idRegistroUsuario: %d |"
-                + " fkEmpresa : %d| fkMaquina: %d |"
-                + " inicializado: %s |  inicialtempoDeAtividadeizado: %s ",
-                idRegistroUsuario, fkEmpresa,
-                fkMaquina, inicializado, tempoDeAtividade);
+        return String.format("idRegistroUsuario: %d | fkEmpresa: %d | fkMaquina: %d | inicializado: %s | tempoDeAtividade: %s",
+                idRegistroUsuario, fkEmpresa, fkMaquina, inicializado, tempoDeAtividade);
     }
 
 }

@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class ParametroRowMapper implements RowMapper<Parametro> {
 

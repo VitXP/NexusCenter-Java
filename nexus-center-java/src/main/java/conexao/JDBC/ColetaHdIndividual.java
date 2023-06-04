@@ -9,7 +9,7 @@ import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.discos.Volume;
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class ColetaHdIndividual {
     

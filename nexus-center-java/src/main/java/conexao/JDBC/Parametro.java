@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class Parametro {
 

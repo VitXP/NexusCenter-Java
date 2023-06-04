@@ -117,14 +117,10 @@ public class Maquina {
     }
 
     @Override
-   public String toString() {
+    public String toString() {
         return String.format("Maquina | idMáquina: %d | Nome Usuário: %s | Patrimonio: %s | Senha : %s|fkEmpresa: %d"
                 + "\n Empresa | idEmpresa : %d |razaoSocial: %s| CNPJ %s | Email %s | tel %S", idMaquina, nomeUsuario, patrimonio, senha,
-                fkEmpresa, idEmpresa, razaoSocial, CNPJ,email,tel);
+                fkEmpresa, idEmpresa, razaoSocial, CNPJ, email, tel);
     }
 
-    
-    
-    
-    
 }

@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class PorcentagemUso {
     // Objetos essenciais à classe

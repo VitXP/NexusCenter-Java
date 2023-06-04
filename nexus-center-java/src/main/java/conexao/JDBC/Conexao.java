@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 
 
-// Classe Conexão com o Mysql baseado em aula de LP
 public class Conexao {
 
     private JdbcTemplate connectionmysql;

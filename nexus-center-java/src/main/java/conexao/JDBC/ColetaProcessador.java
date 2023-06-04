@@ -24,7 +24,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class ColetaProcessador {
     private SlackeandoMetodos mensagem;

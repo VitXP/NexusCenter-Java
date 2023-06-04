@@ -6,7 +6,7 @@ package conexao.JDBC;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class Empresa {
     private String idEmpresa;

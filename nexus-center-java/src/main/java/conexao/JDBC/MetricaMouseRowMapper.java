@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
     
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class MetricaMouseRowMapper implements RowMapper<MetricaMouse> {
     

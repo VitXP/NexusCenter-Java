@@ -10,15 +10,16 @@ import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import conexao.JDBC.Componente;
+import conexao.JDBC.Conexao;
 import conexao.JDBC.ConfiguracaoComponente;
 import conexao.JDBC.InfoMaquina;
+import conexao.JDBC.Maquina;
 import conexao.JDBC.Metrica;
 import conexao.JDBC.MetricaMouse;
 import conexao.JDBC.RegistroAtividade;
 import conexao.JDBC.Usb;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -26,7 +27,14 @@ import javax.swing.Timer;
  */
 public class TelaInicial extends javax.swing.JFrame {
 
-    Looca looca;
+    // Mensagem
+    Mensagem mensagem = new Mensagem();
+    
+    // Objetos  Looca
+    Looca looca = new Looca();
+    Sistema sistema = looca.getSistema();
+    DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
+    Processador processador = looca.getProcessador();
 
     public TelaInicial() {
         initComponents();
@@ -34,18 +42,12 @@ public class TelaInicial extends javax.swing.JFrame {
         this.setResizable(false);
         this.looca = new Looca();
         this.carregarDados();
-        this.mensagem();
+        mensagem.mensagem();
+
     }
 
     private void carregarDados() {
 
-        // Objetos  Looca
-        Looca looca = new Looca();
-        Memoria memoria = looca.getMemoria();
-        DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
-        Processador processador = looca.getProcessador();
-        Sistema sistema = looca.getSistema();
-        
         // Tamanho Total Disco
         Long tamanhoTotalDisco = grupoDeDiscos.getTamanhoTotal();
         double tamanhoTotalGB = tamanhoTotalDisco != null ? tamanhoTotalDisco / (1024 * 1024 * 1024.0) : 0.0;
@@ -62,27 +64,6 @@ public class TelaInicial extends javax.swing.JFrame {
         lblProcessador.setText(String.format("%s ", processador.getNome()));
         lblSistemaOperacional.setText(String.format("%s", sistema.getSistemaOperacional()));
 
-       
-
-    }
-
-    private void mensagem() {
-
-        ImageIcon icon = new ImageIcon(getClass().getResource("/assets/lupa.png"));
-        String mensagem = "Os dados estão sendo coletados e enviados em segundo plano!";
-        String titulo = "Enviando os Dados!";
-        int messageType = JOptionPane.INFORMATION_MESSAGE;
-        int delay = 5000; // Tempo em milissegundos (5 segundos)
-
-        Timer timer = new Timer(delay, e -> {
-            JOptionPane.getRootFrame().dispose(); // Fecha o JOptionPane após o tempo definido
-        });
-
-        timer.setRepeats(false); // Define que o timer não deve repetir
-
-        timer.start(); // Inicia o timer
-
-        JOptionPane.showMessageDialog(null, mensagem, titulo, messageType, icon);
     }
 
     /**

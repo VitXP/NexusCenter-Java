@@ -16,7 +16,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
- * @author rafae
+ * @author vitor
  */
 public class EnviaDados {
 
