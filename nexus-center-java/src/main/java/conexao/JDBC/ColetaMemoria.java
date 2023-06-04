@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author vitor
  */
 public class ColetaMemoria {
+
     private SlackeandoMetodos mensagem;
     private DateTimeFormatter formatter;
     private Integer idMetrica;
@@ -56,7 +57,7 @@ public class ColetaMemoria {
 
     public void enviaDadosMem(Integer fkMaquina, Integer fkEmpresa) throws SlackApiException, IOException {
         ColetaMemoria coleta = new ColetaMemoria();
-        mensagem= new SlackeandoMetodos();
+        mensagem = new SlackeandoMetodos();
 
         this.conectmem().update("insert into Metrica values(?,?,?,?,?,?,?)",
                 coleta.idMetrica = null,
@@ -67,14 +68,13 @@ public class ColetaMemoria {
                 fkEmpresa,
                 3);
         this.conectmemazu().update("insert into Metrica(valorUtilizado,unidadeMedida,dataHora,fkMaquina,fkEmpresa,fkComponente) values(?,?,?,?,?,?)",
-                
                 coleta.valorUtilizado,
                 coleta.unidadeMedida,
                 coleta.dataHora,
                 fkMaquina,
                 fkEmpresa.toString(),
                 3);
-        porcentagem=((coleta.valorUtilizado / coleta.capacidade) * 100);
+        porcentagem = ((coleta.valorUtilizado / coleta.capacidade) * 100);
         if (porcentagem < 80) {
             statusAlerta = "Ideal";
         } else if (porcentagem >= 80 && porcentagem < 90) {
@@ -83,24 +83,22 @@ public class ColetaMemoria {
             statusAlerta = "Alerta";
             mensagem.notificarErroMem(porcentagem);
         }
-        this.conectmem().update("insert into AlertaDashboard values(?,?,?,?)",
+        this.conectmem().update("insert into AlertaDashboard values(?,?,?,?,?)",
                 idAlerta = null,
                 coleta.dataHora,
                 statusAlerta,
-                3);
-        this.conectmemazu().update("insert into AlertaDashboard values(?,?,?)",
-                
+                3,
+                fkMaquina);
+        this.conectmemazu().update("insert into AlertaDashboard values(?,?,?,?)",
                 coleta.dataHora,
                 statusAlerta,
-                3);
-               
-        
+                3,
+                fkMaquina);
 
     }
 
     public void enviaDadosMemazu(Integer fkMaquina, Integer fkEmpresa) {
         ColetaMemoria coleta = new ColetaMemoria();
-
 
     }
 

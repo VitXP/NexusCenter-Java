@@ -21,7 +21,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Classes
     Mensagem mensagem = new Mensagem();
-    EnviarDados dados = new EnviarDados();
+    Dados dados = new Dados();
 
     // Objetos  Looca
     Looca looca = new Looca();
@@ -36,8 +36,7 @@ public class TelaInicial extends javax.swing.JFrame {
         this.login = login;
         String patrimonio = login.getPatrimonioDigitado(); // Obtendo a variávelA da instância de JanelaA passada
         String senha = login.getSenhaDigitada(); // Obtendo a variávelA da instância de JanelaA passada
-        System.out.println(patrimonio);
-        System.out.println(senha);
+       
 
         //Icone
         this.setIconImage(

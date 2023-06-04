@@ -124,31 +124,19 @@ public class ColetaHDInfo {
             statusAlerta = "Alerta";
             mensagem.notificarErroHd(porcentagem);
         }
-        this.conectHd().update("insert into AlertaDashboard values(?,?,?,?)",
+        this.conectHd().update("insert into AlertaDashboard values(?,?,?,?,?)",
                 idAlerta = null,
                 coleta.dataHora,
                 statusAlerta,
-                1);
-        this.conectHdazu().update("insert into AlertaDashboard values(?,?,?)",
+                1,
+                fkMaquina);
+        this.conectHdazu().update("insert into AlertaDashboard values(?,?,?,?)",
                 coleta.dataHora,
                 statusAlerta,
-                1);
+                1,
+                fkMaquina);
 
     }
-//        template.update("insert into configuracaoComponente(capacidade, unidadeMedida, fkMaquina, fkEmpresa, fkComponente) values (?,?,?,?,?)",
-//                        this.capacidade,                        
-//                        this.unidadeMedida,
-//                        fkmaquina,
-//                        fkempresa,
-//                        fkcomponente);
-//        template.update("insert into configuracaoComponente(valorUtilizado, unidadeMedida, dataHora, fkMaquina, fkEmpresa, fkComponente) values (?,?,?,?,?)",
-//                        this.valorUtilizado,
-//                        this.unidadeMedida,
-//                        this.dataHora,
-//                        fkmaquina,
-//                        fkempresa,
-//                        fkcomponente);
-//        
 
     public void enviaDadosTotalhdazu(Integer fkMaquina, Integer fkEmpresa) {
         ColetaHDInfo coleta = new ColetaHDInfo();

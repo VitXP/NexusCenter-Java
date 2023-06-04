@@ -99,15 +99,17 @@ public class ColetaProcessador {
             statusAlerta = "Alerta";
             mensagem.notificarErroProcessador(porcentagem);
         }
-        this.conectHd().update("insert into AlertaDashboard values(?,?,?,?)",
+        this.conectHd().update("insert into AlertaDashboard values(?,?,?,?,?)",
                 idAlerta = null,
                 coleta.dataHora,
                 statusAlerta,
-                2);
-        this.conectHdAzu().update("insert into AlertaDashboard values(?,?,?)",
+                2,
+                fkMaquina);
+        this.conectHdAzu().update("insert into AlertaDashboard values(?,?,?,?)",
                 coleta.dataHora,
                 statusAlerta,
-                2);
+                2,
+                fkMaquina);
 
     }
 
