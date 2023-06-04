@@ -6,28 +6,10 @@ package login;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.DiscoGrupo;
-import com.github.britooo.looca.api.group.dispositivos.DispositivoUsb;
-import com.github.britooo.looca.api.group.dispositivos.DispositivosUsbGrupo;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
-import comunicacao.slack.SlackeandoMetodos;
-import conexao.JDBC.Componente;
-import conexao.JDBC.Conexao;
-import conexao.JDBC.ConfiguracaoComponente;
-import conexao.JDBC.Empresa;
-import conexao.JDBC.EnviaDados;
-import conexao.JDBC.InfoMaquina;
-import conexao.JDBC.Maquina;
-import conexao.JDBC.RegistroAtividade;
-import conexao.JDBC.Usb;
-import java.sql.ResultSet;
-import java.time.LocalDateTime;
-import java.util.List;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -35,34 +17,56 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class TelaInicial extends javax.swing.JFrame {
 
-    // Mensagem
-    Mensagem mensagem = new Mensagem();
+    private LoginJframe login;
 
-    //Enviar Dados
-    EnviarDados enviar = new EnviarDados();
+    // Classes
+    Mensagem mensagem = new Mensagem();
+    EnviarDados dados = new EnviarDados();
+
     // Objetos  Looca
     Looca looca = new Looca();
     Sistema sistema = looca.getSistema();
     DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
     Processador processador = looca.getProcessador();
 
-    public TelaInicial() {
+    public TelaInicial(LoginJframe login) {
         initComponents();
-        this.setIconImage(new ImageIcon(getClass().getResource("/assets/logoIc.png")).getImage());
-        this.setResizable(false);
+
+        // Coletando Dados do Login Jframe
+        this.login = login;
+        String patrimonio = login.getPatrimonioDigitado(); // Obtendo a variávelA da instância de JanelaA passada
+        String senha = login.getSenhaDigitada(); // Obtendo a variávelA da instância de JanelaA passada
+        System.out.println(patrimonio);
+        System.out.println(senha);
+
+        //Icone
+        this.setIconImage(
+                new ImageIcon(getClass().getResource("/assets/logoIc.png")).getImage());
+
+        this.setResizable(
+                false);
+
+        // Looca
         this.looca = new Looca();
         this.carregarDados();
+
+        //Mensagem
         mensagem.mensagem();
 
         int delay = 10000; // Tempo em milissegundos (10 segundos)
 
         Timer timer = new Timer(delay, e -> {
-            enviar.enviar();
+            dados.enviar(patrimonio, senha);
         });
 
-        timer.setRepeats(false); // Define que o timer não deve repetir
+        timer.setRepeats(
+                false); // Define que o timer não deve repetir
 
         timer.start(); // Inicia o timer
+    }
+
+    private TelaInicial() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     private void carregarDados() {
@@ -259,16 +263,24 @@ public class TelaInicial extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaInicial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaInicial.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

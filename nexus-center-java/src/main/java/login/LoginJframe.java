@@ -18,6 +18,25 @@ import java.util.logging.Logger;
  */
 public class LoginJframe extends javax.swing.JFrame {
 
+    private String patrimonioDigitado;
+    private String SenhaDigitada;
+
+    public String getPatrimonioDigitado() {
+        return patrimonioDigitado;
+    }
+
+    public void setPatrimonioDigitado(String patrimonioDigitado) {
+        this.patrimonioDigitado = patrimonioDigitado;
+    }
+
+    public String getSenhaDigitada() {
+        return SenhaDigitada;
+    }
+
+    public void setSenhaDigitada(String SenhaDigitada) {
+        this.SenhaDigitada = SenhaDigitada;
+    }
+
     public LoginJframe() {
         initComponents();
         this.setIconImage(new ImageIcon(getClass().getResource("/assets/logoIc.png")).getImage());
@@ -146,40 +165,30 @@ public class LoginJframe extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public String patrimonio() {
-        return "1";
-    }
-
-    public String senha() {
-        return "1";
-    }
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
 
-        //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
         // Validação Log
-        String patrimonio_digitado = txtPatrimonio.getText();
-        String senha_digitada = txtSenha.getText();
+        setPatrimonioDigitado(txtPatrimonio.getText());
+        setSenhaDigitada(txtSenha.getText());
 
-        Maquina validMaquina = new Maquina(patrimonio_digitado, senha_digitada);// Adicionado Construtor na classe máquina]
+        Maquina validMaquina = new Maquina(getPatrimonioDigitado(), getSenhaDigitada());// Adicionado Construtor na classe máquina]
         UsuarioDAO validacaoLog = new UsuarioDAO();// Executa-se a consulta ao banco referente ao método para instanciar objeto Maquina que servirá ara autenticação;
         ResultSet rsusariodaos = validacaoLog.autenticsacaoUsuario(validMaquina);// Nesta linha é instanciado objeto com parâmetros provenientes da consulta com a Azure
         Log log = new Log();
 
         try {
             log.login(rsusariodaos, rsusariodaos.next());
+
         } catch (SQLException ex) {
-            Logger.getLogger(LoginJframe.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginJframe.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
         try {
 
             // Objetos JDBC
-            String patrimonio_maquina = txtPatrimonio.getText();
-            String senha_maquina = txtSenha.getText();
-            System.out.println(patrimonio_maquina);
-            System.out.println(senha_maquina);
-
-            Maquina maquina = new Maquina(patrimonio_maquina, senha_maquina);// Adicionado Construtor na classe máquina
+            Maquina maquina = new Maquina(getPatrimonioDigitado(), getSenhaDigitada());// Adicionado Construtor na classe máquina
 
             UsuarioDAO objUsuarioDAO = new UsuarioDAO();// Executa-se a consulta ao banco referente ao método para instanciar objeto Maquina que servirá ara autenticação;
             ResultSet rsusariodao = objUsuarioDAO.autenticsacaoUsuario(maquina);// Nesta linha é instanciado objeto com parâmetros provenientes da consulta com a Azure
@@ -192,7 +201,7 @@ public class LoginJframe extends javax.swing.JFrame {
                 mensagem.mensagemLogin();
 
                 //Mudar Tela
-                TelaInicial telaNext = new TelaInicial();
+                TelaInicial telaNext = new TelaInicial(this);
                 this.dispose();
                 telaNext.setVisible(rootPaneCheckingEnabled);
 
@@ -224,16 +233,24 @@ public class LoginJframe extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginJframe.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginJframe.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginJframe.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginJframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginJframe.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

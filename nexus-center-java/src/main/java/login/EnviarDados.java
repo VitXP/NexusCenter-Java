@@ -33,9 +33,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author vitor
  */
 public class EnviarDados {
-
-    public void enviar() {
+    
+    public void enviar(String patrimonio, String senha) {
+        
         try {
+
             // Objetos JDBC
             Conexao conexao = new Conexao();
             JdbcTemplate conMysql = conexao.getConnection();
@@ -51,13 +53,10 @@ public class EnviarDados {
             Sistema sistema = looca.getSistema();
             DiscoGrupo grupoDeDiscos = looca.getGrupoDeDiscos();
             Processador processador = looca.getProcessador();
-
-            String patrimonio_maquina = "1";
-            String senha_maquina = "1";
-
-            Maquina maquina = new Maquina(patrimonio_maquina, senha_maquina);// Adicionado Construtor na classe máquina
+            
+            Maquina maquina = new Maquina(patrimonio, senha);// Adicionado Construtor na classe máquina
             SlackeandoMetodos aviso = new SlackeandoMetodos();
-
+            
             UsuarioDAO objUsuarioDAO = new UsuarioDAO();// Executa-se a consulta ao banco referente ao método para instanciar objeto Maquina que servirá ara autenticação;
             ResultSet rsusariodao = objUsuarioDAO.autenticsacaoUsuario(maquina);// Nesta linha é instanciado objeto com parâmetros provenientes da consulta com a Azure
 
@@ -69,7 +68,7 @@ public class EnviarDados {
                 maquina.setCNPJ(rsusariodao.getString("CNPJ"));
                 maquina.setEmail(rsusariodao.getString("email"));
                 maquina.setTel(rsusariodao.getString("tel"));
-
+                
                 maquina.setNomeUsuario(rsusariodao.getString("nomeDoUsuario"));
                 maquina.setFkEmpresa(rsusariodao.getInt("idEmpresa"));
                 maquina.setIdMaquina(rsusariodao.getInt("idMaquina"));
@@ -88,7 +87,8 @@ public class EnviarDados {
                 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 // Insert tabela Empresa
                 List<Empresa> listadeEmpresa = conMysql.query("select * from Empresa where idEmpresa = ?",
-                        new BeanPropertyRowMapper(Empresa.class), rsusariodao.getInt("idEmpresa"));// informações extraídas da consulta sqlserver realizadas em usuario DAO, preenchendo o bean property  com um construtor vazio disponível para receber o objeto específico do servidor.
+                        new BeanPropertyRowMapper(Empresa.class
+                        ), rsusariodao.getInt("idEmpresa"));// informações extraídas da consulta sqlserver realizadas em usuario DAO, preenchendo o bean property  com um construtor vazio disponível para receber o objeto específico do servidor.
                 if (listadeEmpresa.isEmpty()) {
                     // Inset tabela Empresa
                     conMysql.update("INSERT INTO Empresa (idEmpresa, razaoSocial, CNPJ, email, tel) VALUES (?,?,?,?,?)",
@@ -97,12 +97,14 @@ public class EnviarDados {
                             maquina.getCNPJ(),
                             maquina.getEmail(),
                             maquina.getTel());
+                    
                 }
 
                 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 // Insert tabela Maquina
                 List<Maquina> listaDeMaquina1 = conMysql.query("select * from Maquina where idMaquina = ?",
-                        new BeanPropertyRowMapper(Maquina.class), rsusariodao.getInt("idMaquina"));
+                        new BeanPropertyRowMapper(Maquina.class
+                        ), rsusariodao.getInt("idMaquina"));
                 if (listaDeMaquina1.isEmpty()) {
 
                     // Inset tabela Maquina
@@ -112,12 +114,14 @@ public class EnviarDados {
                             maquina.getPatrimonio(),
                             maquina.getSenha(),
                             maquina.getFkEmpresa());
+                    
                 }
 
                 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 // Insert tabela InfoMaquina Local
                 List<Maquina> listaDeMaquina = conMysql.query("select * from InfoMaquina where fkMaquina = ?",
-                        new BeanPropertyRowMapper(Maquina.class), rsusariodao.getInt("idMaquina"));
+                        new BeanPropertyRowMapper(Maquina.class
+                        ), rsusariodao.getInt("idMaquina"));
                 if (listaDeMaquina.isEmpty()) {
                     conMysql.update("insert into InfoMaquina (sistemaoperacional, fabricante, arquitetura, nomeProcessador, capacidadeRam, capacidadeDisco, fkmaquina, fkempresa) values (?,?,?,?,?,?,?,?)",
                             sistema.getSistemaOperacional(),
@@ -137,12 +141,13 @@ public class EnviarDados {
                             tamanhoTotalFormatadoMemoria,
                             tamanhoTotalFormatadoDisco,
                             maquina.getIdMaquina());
-
+                    
                 }
 
                 // Insert tabela InfoMaquina Azure
                 List<Maquina> listaDeMaquinaAzure = conAzure.query("select * from InfoMaquina where fkMaquina = ?",
-                        new BeanPropertyRowMapper(Maquina.class), rsusariodao.getInt("idMaquina"));
+                        new BeanPropertyRowMapper(Maquina.class
+                        ), rsusariodao.getInt("idMaquina"));
                 if (listaDeMaquinaAzure.isEmpty()) {
                     conAzure.update("insert into InfoMaquina (sistemaoperacional, fabricante, arquitetura, nomeProcessador, capacidadeRam, capacidadeDisco, fkmaquina, fkempresa) values (?,?,?,?,?,?,?,?)",
                             sistema.getSistemaOperacional(),
@@ -153,7 +158,7 @@ public class EnviarDados {
                             tamanhoTotalFormatadoDisco,
                             maquina.getIdMaquina(),
                             maquina.getFkEmpresa());
-
+                    
                 } else {
                     conAzure.update("update InfoMaquina set sistemaoperacional=?, fabricante=?, arquitetura=?, nomeProcessador=?, capacidadeRam=?, capacidadeDisco=? where fkmaquina=?",
                             sistema.getSistemaOperacional(),
@@ -168,11 +173,11 @@ public class EnviarDados {
                 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------
                 // Insert Tabela Usb
                 LocalDateTime dataHoraAcesso = LocalDateTime.now();
-
+                
                 DispositivosUsbGrupo dispositivos = looca.getDispositivosUsbGrupo();
-
+                
                 List<DispositivoUsb> dispositivosConectados = dispositivos.getDispositivosUsbConectados();
-
+                
                 for (DispositivoUsb dispositivo : dispositivosConectados) {
                     usb.setNome(dispositivo.getNome());
                     usb.setFornecedor(dispositivo.getForncecedor());
@@ -199,7 +204,7 @@ public class EnviarDados {
                         maquina.getIdMaquina(),
                         dataHoraAcesso
                 );
-
+                
                 conAzure.update("insert into RegistroAtividade(fkEmpresa, fkMaquina, inicializado) values (?,?,?)",
                         maquina.getFkEmpresa(),
                         maquina.getIdMaquina(),
@@ -226,7 +231,7 @@ public class EnviarDados {
                 );
                 //Tratando Dados Processador
                 componente.setIdComponente(2);
-
+                
                 Long frequenciaLong = processador.getFrequencia();
                 double frequenciaGHz = frequenciaLong != null ? frequenciaLong / 1e9 : 0.0;
                 int frequenciaInt = (int) Math.round(frequenciaGHz);
@@ -276,30 +281,33 @@ public class EnviarDados {
                 // Selects com Resultados
                 // Tabela Maquina
                 List< RegistroAtividade> registroAtividades = conMysql.query("select * from RegistroAtividade order by idRegistroUsuario asc",
-                        new BeanPropertyRowMapper(RegistroAtividade.class));
+                        new BeanPropertyRowMapper(RegistroAtividade.class
+                        ));
                 System.out.println(registroAtividades);
 
                 // Tabela InfoMaquina
                 List< InfoMaquina> infoMaquinas = conMysql.query("select * from InfoMaquina order by idInfoMaquina asc",
-                        new BeanPropertyRowMapper(InfoMaquina.class));
+                        new BeanPropertyRowMapper(InfoMaquina.class
+                        ));
                 System.out.println(infoMaquinas);
 
                 //Tabela Maquina e Empresa
                 List<Maquina> maquinas = conMysql.query("select * from Maquina join Empresa on fkempresa=idempresa order by idMaquina asc",
-                        new BeanPropertyRowMapper(Maquina.class));
+                        new BeanPropertyRowMapper(Maquina.class
+                        ));
                 System.out.println(maquinas);
 
 //                aviso.notificar();
                 EnviaDados inicio = new EnviaDados();
                 inicio.iniciarEnvio(maquina.getIdMaquina(), maquina.getFkEmpresa());
-
+                
             } else {
                 // Erro
                 ImageIcon icon = new ImageIcon(getClass().getResource("/assets/erro.png"));
                 JOptionPane.showMessageDialog(null, "Erro ao enviar Dados",
                         "Erro", JOptionPane.INFORMATION_MESSAGE, icon);
             }
-
+            
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "erro");
         }
