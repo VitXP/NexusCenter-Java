@@ -121,7 +121,7 @@ statusAlerta varchar(45),
 fkComponente int,
 FOREIGN KEY (fkComponente) REFERENCES Componente (idComponente),
 fkMaquina int,
-FOREIGN KEY (fkMaquina) REFERENCES maquina (idMaquina)
+FOREIGN KEY (fkMaquina) REFERENCES Maquina (idMaquina)
 );
 
 insert into Componente values(null,"Disco");
@@ -142,6 +142,9 @@ FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
 
+
+
+
 select*From Empresa;
 select*From Maquina;
 select*From Usb;
@@ -151,9 +154,7 @@ select*From MetricaMouse;
 select*From ConfiguracaoComponente;
 select*From Componente;
 select*From ParametroAlerta;
-select*From alertaDashboard;
+select*From AlertaDashboard;
 select*From Metrica;
 select*From RegistroAtividade;
 select*From MetricaMouse;
-
-
